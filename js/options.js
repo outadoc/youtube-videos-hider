@@ -1,10 +1,11 @@
-(function() {
-	if(window.localStorage.getItem('hiddenVideos') != null) {
-		$('#filters').val(localStorage.getItem('hiddenVideos'));
-	}
-})();
-
 $('input[name="save"]').click(function() {
-	localStorage.setItem('hiddenVideos', $('#filters').val());
-	alert('Saved! (' + $('#filters').val() + ')');
+	chrome.storage.sync.set({
+		'hiddenVideos': $('#filters').val()
+	}, function() {
+		alert('Saved successfully!');
+	});
+});
+
+chrome.storage.sync.get('filters', function(item) {
+	console.log(item.filters);
 });
