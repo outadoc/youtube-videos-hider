@@ -1,9 +1,7 @@
 chrome.storage.sync.get('hiddenVideos', function(item) {	
 	var videos = $('.feed-page ul li');
 	var hidden_videos = (item.hiddenVideos).split('\n');
-	
-	console.log(hidden_videos);
-	
+		
 	$.each(videos, function(i) {
 		var title = $(videos[i]).find('a.title').text();
 		
