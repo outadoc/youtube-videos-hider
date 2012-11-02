@@ -1,6 +1,6 @@
-chrome.extension.sendRequest({method: "getLocalStorage", key: "hiddenVideos"}, function(response) {	
+chrome.storage.sync.get('hiddenVideos', function(item) {	
 	var videos = $('.feed-page ul li');
-	var hidden_videos = (response.data).split('\n');
+	var hidden_videos = (item.hiddenVideos).split('\n');
 	
 	console.log(hidden_videos);
 	
