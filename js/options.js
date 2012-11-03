@@ -81,7 +81,7 @@ $('input[name="save"]').click(function() {
 //getting the filters using the Chrome storage API
 chrome.storage.sync.get('filters', function(item) {
 	//if the list has already been set
-	if(item.filters != null) {
+	if(item.filters != null && item.filters.length > 0) {
 		//begin with adding a table and its header
 		var content = '<table><tr><th>Author</th><th>Title match</th></tr>';
 		
@@ -110,5 +110,14 @@ chrome.storage.sync.get('filters', function(item) {
 		
 		//add event listeners to the buttons
 		updateEventListeners();
+	} else {
+		chrome.storage.sync.set({
+			'filters': [{
+				'match': '',
+				'author': null
+			}]
+		}, function() {
+			document.location.reload(true);
+		});
 	}
 });
