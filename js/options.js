@@ -83,5 +83,16 @@ chrome.storage.sync.get('filters', function(item) {
 				$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
 			}
 		});
+		
+		$('button.add').click(function() {
+			//add two fields and a "remove" button
+			var content = '<tr><td><input type="text" class="author" value=""></input></td>';
+				content += '<td><input type="text" class="match" value=""></input></td>';
+				content += '<td><button class="remove">-</button>';
+				content += '<button class="add">+</button></td></tr>';
+			
+			$('#filters table tr button.add').remove();
+			$('#filters table').append(content);
+		});
 	}
 });
