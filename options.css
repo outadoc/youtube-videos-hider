@@ -66,3 +66,11 @@ input[name="save"] {
 	margin-top: 25px;
 	margin-bottom: 25px;
 }
+
+.eg-user {
+	color: #cb0000;
+}
+
+.eg-title {
+	color: #008787;
+}
