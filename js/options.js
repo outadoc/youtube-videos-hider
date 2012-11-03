@@ -23,6 +23,8 @@ function updateEventListeners() {
 			//re-add the addition button on the last line (which isn't the same anymore)
 			$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
 		}
+		
+		updateEventListeners();
 	});
 	
 	$('button.add').click(function() {
@@ -34,6 +36,8 @@ function updateEventListeners() {
 		
 		$('#filters table tr button.add').remove();
 		$('#filters table').append(content);
+		
+		updateEventListeners();
 	});
 }
 
@@ -99,6 +103,7 @@ chrome.storage.sync.get('filters', function(item) {
 		
 		//close the table
 		$('#filters').append(content + '</table>');
+		
 		updateEventListeners();
 	}
 });
