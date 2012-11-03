@@ -15,7 +15,7 @@ chrome.storage.sync.get('filters', function(item) {
 			//iterate through each filter
 			for(var j = 0; j < item.filters.length; j++) {
 				//if the title of the video matches and the author is either blank or matches
-				if(title.indexOf(item.filters[j].match.toLowerCase()) != -1 && (item.filters[j].author == '' || item.filters[j].author == null || item.filters[j].author.toLowerCase() == username)) {
+				if(title != '' && (title.indexOf(item.filters[j].match.toLowerCase()) != -1 && (item.filters[j].author == '' || item.filters[j].author == null || item.filters[j].author.toLowerCase() == username))) {
 					//and that's where the magic happens: we remove the video from the page
 					$(videos[i]).remove();
 				}
