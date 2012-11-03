@@ -22,7 +22,7 @@ function updateEventListeners() {
 			//update the list of lines
 			tableLines = $('#filters tr');
 			//re-add the addition button on the last line (which isn't the same anymore)
-			$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
+			$($(tableLines[tableLines.length-1]).children('td')[2]).append('<button class="add">+</button>');
 		}
 		
 		//update events listners so the new buttons react correctly
