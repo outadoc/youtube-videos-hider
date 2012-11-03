@@ -83,7 +83,7 @@ chrome.storage.sync.get('filters', function(item) {
 	//if the list has already been set
 	if(item.filters != null) {
 		//begin with adding a table and its header
-		var content = '<table><tr><th>Author</th><th>Title match</th></tr><tr>';
+		var content = '<table><tr><th>Author</th><th>Title match</th></tr>';
 		
 		//for each filter
 		for(var i = 0; i < item.filters.length; i++) {
