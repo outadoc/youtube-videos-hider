@@ -1,9 +1,25 @@
 $('input[name="save"]').click(function() {
-	chrome.storage.sync.set({
-		'hiddenVideos': $('#filters').val()
-	}, function() {
-		alert('Saved successfully!');
-	});
+	var authorsDOM = $('#filters .author');
+	var matchesDOM = $('#filters .match');
+	var list = [];
+		
+	if(authorsDOM.length == matchesDOM.length) {
+		for(var i = 0; i < authorsDOM.length; i++) {
+			list[i] = {
+				'match': matchesDOM[i].value,
+				'author': authorsDOM[i].value
+			}
+		}
+		
+		chrome.storage.sync.set({
+			'filters': list
+		}, function() {
+			alert('Saved successfully!');
+		});
+		
+	} else {
+		alert('Something went wrong... :(');
+	}
 });
 
 chrome.storage.sync.get('filters', function(item) {
