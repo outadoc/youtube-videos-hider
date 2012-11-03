@@ -93,8 +93,12 @@ chrome.storage.sync.get('filters', function(item) {
 			
 			//add two fields and a "remove" button for each line of the table
 			content += '<tr><td><input type="text" class="author" value="' + item.filters[i].author + '"></input></td>';
-			content += '<td><input type="text" class="match" value="' + item.filters[i].match + '"></input></td>';
-			content += '<td><button class="remove">-</button>';
+			content += '<td><input type="text" class="match" value="' + item.filters[i].match + '"></input></td><td>';
+			
+			//if it's not the first field
+			if(i > 0 || item.filters.length > 1) {
+				content += '<button class="remove">-</button>';
+			}
 			
 			//if it's the last field, add an "add" button so the user can add fields later
 			if(i == item.filters.length - 1) {
