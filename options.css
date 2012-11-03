@@ -9,11 +9,7 @@ body {
 	background-color: #d8d8d8;
 	background-image: -webkit-gradient(linear, left top, left bottom, from(#e6e6e6), to(#cbcbcb));
 	background-image: -webkit-linear-gradient(top, #e6e6e6, #cbcbcb);
-	background-image: -moz-linear-gradient(top, #e6e6e6, #cbcbcb);
-	background-image: -o-linear-gradient(top, #e6e6e6, #cbcbcb);
-	background-image: -ms-linear-gradient(top, #e6e6e6, #cbcbcb);
 	background-image: linear-gradient(top, #e6e6e6, #cbcbcb);
-	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,StartColorStr='#e6e6e6', EndColorStr='#cbcbcb');
 	
 	border-bottom: 1px solid #a6a6a6;
 	margin: 0;
