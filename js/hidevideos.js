@@ -1,17 +1,16 @@
-chrome.storage.sync.get('hiddenVideos', function(item) {	
-	if(item.hiddenVideos != null) {
-		var videos = $('.feed-page ul li');
-		var hidden_videos = (item.hiddenVideos).split('\n');
+chrome.storage.sync.get('filters', function(item) {	
+	if(item.filters != null) {
+		var videos = $('.feed-page > ul > li');
 		
-		$.each(videos, function(i) {
-			var title = $(videos[i]).find('a.title').text();
+		for(var i = 0; i < videos.length; i++) {
+			var title = $(videos[i]).find('a.feed-video-title').filter(':first').text().toLowerCase();
+			var username = $(videos[i]).find('a.yt-user-name').filter(':first').text().toLowerCase();
 			
-			$.each(hidden_videos, function(j) {
-				if((title.toLowerCase()).indexOf((hidden_videos[j]).toLowerCase()) != -1) {
-					console.log('removing ' + title + '(because of ' + hidden_videos[j] + ')');
+			for(var j = 0; j < item.filters.length; j++) {
+				if(title.indexOf(item.filters[j].match.toLowerCase()) != -1 && (item.filters[j].author == '' || item.filters[j].author == null || item.filters[j].author.toLowerCase() == username)) {
 					$(videos[i]).remove();
 				}
-			});
-		});
+			}
+		}
 	}
 });
