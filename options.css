@@ -21,11 +21,11 @@ body {
 	left: 0;
 	width: 100%;
 	position: absolute;
-	height: 50px;
+	height: 53px;
 }
 
 .header a {
-	top: -50px;
+	top: -48px;
 	float: right;
 	position: relative;
 }
