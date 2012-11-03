@@ -2,7 +2,7 @@
   "name": "YT Videos Hider",
   "version": "0.2",
   "manifest_version": 2,
-  "description": "Hide the videos you don't want to see from your Youtube™ subscriptions page.",
+  "description": "Hide the videos you don't want to see from your Youtube™ home page.",
   "content_scripts": [
     {
       "matches": ["http://*.youtube.com/*"],
