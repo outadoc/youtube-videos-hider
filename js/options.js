@@ -1,8 +1,9 @@
 function updateEventListeners() {
+	//unbind all the existing click listeners so they don't have duplicates
 	$('button.remove').unbind('click');
 	$('button.add').unbind('click');
 	
-	//if we want to remove a line
+	//implement and bind removal functionnality
 	$('button.remove').click(function() {
 		//get the list of the lines of the table
 		var tableLines = $('#filters tr');
@@ -24,9 +25,11 @@ function updateEventListeners() {
 			$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
 		}
 		
+		//update events listners so the new buttons react correctly
 		updateEventListeners();
 	});
 	
+	//implement and bind addition functionnality
 	$('button.add').click(function() {
 		//add two fields and a "remove" button
 		var content = '<tr><td><input type="text" class="author" value=""></input></td>';
@@ -37,6 +40,7 @@ function updateEventListeners() {
 		$('#filters table tr button.add').remove();
 		$('#filters table').append(content);
 		
+		//update events listners so the new buttons react correctly
 		updateEventListeners();
 	});
 }
@@ -104,6 +108,7 @@ chrome.storage.sync.get('filters', function(item) {
 		//close the table
 		$('#filters').append(content + '</table>');
 		
+		//add event listeners to the buttons
 		updateEventListeners();
 	}
 });
