@@ -21,6 +21,17 @@ body {
 	left: 0;
 	width: 100%;
 	position: absolute;
+	height: 50px;
+}
+
+.header a {
+	top: -50px;
+	float: right;
+	position: relative;
+}
+
+.header a img {
+	height: 42px;
 }
 
 h1 {
