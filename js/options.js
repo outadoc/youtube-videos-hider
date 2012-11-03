@@ -1,3 +1,42 @@
+function updateEventListeners() {
+	$('button.remove').unbind('click');
+	$('button.add').unbind('click');
+	
+	//if we want to remove a line
+	$('button.remove').click(function() {
+		//get the list of the lines of the table
+		var tableLines = $('#filters tr');
+		var wasLastLine = false;
+		
+		//if we deleted the last line of the table, remember it
+		if(tableLines[tableLines.length-1] == $(this).parent().parent().get(0)) {
+			wasLastLine = true;
+		}
+		
+		//delete the line of the button we clicked
+		$(this).parent().parent().remove();
+		
+		//if we just deleted the last line of the table
+		if(wasLastLine) {
+			//update the list of lines
+			tableLines = $('#filters tr');
+			//re-add the addition button on the last line (which isn't the same anymore)
+			$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
+		}
+	});
+	
+	$('button.add').click(function() {
+		//add two fields and a "remove" button
+		var content = '<tr><td><input type="text" class="author" value=""></input></td>';
+			content += '<td><input type="text" class="match" value=""></input></td>';
+			content += '<td><button class="remove">-</button>';
+			content += '<button class="add">+</button></td></tr>';
+		
+		$('#filters table tr button.add').remove();
+		$('#filters table').append(content);
+	});
+}
+
 //when the user clicks save
 $('input[name="save"]').click(function() {
 	//the DOM textfields containing the names of the authors
@@ -60,39 +99,6 @@ chrome.storage.sync.get('filters', function(item) {
 		
 		//close the table
 		$('#filters').append(content + '</table>');
-		
-		//if we want to remove a line
-		$('button.remove').click(function() {
-			//get the list of the lines of the table
-			var tableLines = $('#filters tr');
-			var wasLastLine = false;
-			
-			//if we deleted the last line of the table, remember it
-			if(tableLines[tableLines.length-1] == $(this).parent().parent().get(0)) {
-				wasLastLine = true;
-			}
-			
-			//delete the line of the button we clicked
-			$(this).parent().parent().remove();
-			
-			//if we just deleted the last line of the table
-			if(wasLastLine) {
-				//update the list of lines
-				tableLines = $('#filters tr');
-				//re-add the addition button on the last line (which isn't the same anymore)
-				$(tableLines[tableLines.length-1]).append('<button class="add">+</button>');
-			}
-		});
-		
-		$('button.add').click(function() {
-			//add two fields and a "remove" button
-			var content = '<tr><td><input type="text" class="author" value=""></input></td>';
-				content += '<td><input type="text" class="match" value=""></input></td>';
-				content += '<td><button class="remove">-</button>';
-				content += '<button class="add">+</button></td></tr>';
-			
-			$('#filters table tr button.add').remove();
-			$('#filters table').append(content);
-		});
+		updateEventListeners();
 	}
 });
