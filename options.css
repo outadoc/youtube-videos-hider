@@ -28,6 +28,7 @@ body {
 	top: -48px;
 	float: right;
 	position: relative;
+	margin-right: 10px;
 }
 
 .header a img {
