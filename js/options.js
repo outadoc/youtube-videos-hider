@@ -1,16 +1,24 @@
+//when the user clicks save
 $('input[name="save"]').click(function() {
+	//the DOM textfields containing the names of the authors
 	var authorsDOM = $('#filters .author');
+	//the DOM textfields containing the match patterns
 	var matchesDOM = $('#filters .match');
+	//the array that will contain the final array of filter properties
 	var list = [];
-		
+	
+	//there should be as much author fields as there are matches fields
 	if(authorsDOM.length == matchesDOM.length) {
+		//for each set of two fields; they're the same length so it should be no problem
 		for(var i = 0; i < authorsDOM.length; i++) {
+			//add the object containing the properties of the filter to the final array
 			list[i] = {
 				'match': matchesDOM[i].value,
 				'author': authorsDOM[i].value
 			}
 		}
 		
+		//saving the filters with the Chrome storage API
 		chrome.storage.sync.set({
 			'filters': list
 		}, function() {
@@ -18,29 +26,39 @@ $('input[name="save"]').click(function() {
 		});
 		
 	} else {
+		//the fields count are not the same, the user must have messed something up
 		alert('Something went wrong... :(');
 	}
 });
 
+//getting the filters using the Chrome storage API
 chrome.storage.sync.get('filters', function(item) {
+	//if the list has already been set
 	if(item.filters != null) {
+		//begin with adding a table and its header
 		var content = '<table><tr><th>Author</th><th>Title match</th></tr><tr>';
 		
+		//for each filter
 		for(var i = 0; i < item.filters.length; i++) {
+			//if the field is null, make it empty instead
 			if(item.filters[i].author == null) { item.filters[i].author = ''; }
 			if(item.filters[i].match == null) { item.filters[i].match = ''; }
 			
+			//add two fields and a "remove" button for each line of the table
 			content += '<tr><td><input type="text" class="author" value="' + item.filters[i].author + '"></input></td>';
 			content += '<td><input type="text" class="match" value="' + item.filters[i].match + '"></input></td>';
 			content += '<td><button class="remove">-</button>';
 			
+			//if it's the last field, add an "add" button so the user can add fields later
 			if(i == item.filters.length - 1) {
 				content += '<button class="add">+</button>';
 			}
 			
+			//close the line of the table
 			content += '</td></tr>';
 		}
 		
+		//close the table
 		$('#filters').append(content + '</table>');
 	}
 });
