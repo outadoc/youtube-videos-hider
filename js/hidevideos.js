@@ -10,7 +10,7 @@ chrome.storage.sync.get('filters', function(item) {
 			//and we're using .toLowerCase() to match the preferences case insensitive
 			var title = $(videos[i]).find('a.feed-video-title').filter(':first').text().toLowerCase();
 			//get the username of the uploader
-			var username = $(videos[i]).find('a.yt-user-name').filter(':first').text().toLowerCase();
+			var username = $(videos[i]).find('span.feed-item-owner a').filter(':first').text().toLowerCase();
 			
 			//iterate through each filter
 			for(var j = 0; j < item.filters.length; j++) {
