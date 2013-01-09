@@ -1,3 +1,7 @@
+/* YT Videos Hider // options.js
+   Copyright (c) 2012 outa[dev].
+*/
+
 function updateEventListeners() {
 	//unbind all the existing click listeners so they don't have duplicates
 	$('button.remove').unbind('click');

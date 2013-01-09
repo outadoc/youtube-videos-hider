@@ -1,3 +1,7 @@
+/* YT Videos Hider // background.js
+   Copyright (c) 2012 outa[dev].
+*/
+
 function convertDataToNewFormat() {
 	//if we're using the old filter format
 	chrome.storage.sync.get('hiddenVideos', function(item) {

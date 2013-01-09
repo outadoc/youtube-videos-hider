@@ -1,3 +1,7 @@
+/* YT Videos Hider // hidevideos.js
+   Copyright (c) 2012 outa[dev].
+*/
+
 chrome.storage.sync.get('filters', function(item) {	
 	if(item.filters != null) {
 		//get a list of all the videos on the page
